@@ -1,0 +1,41 @@
+name: Python CI
+
+# when to trigger?
+on:
+  push: # push even
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# what to do
+
+jobs:
+  test: # name of the job 
+    runs-on: ubuntu-latest # which containers?
+  
+    steps:
+      #steps
+      #step 1
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      #step2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with: 
+          python-version: '3.8'
+
+      #step3
+
+      - name: Intall dependencies
+        run: 
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      #step 4
+
+      - name: Run tests
+        run: pytest
+ 
